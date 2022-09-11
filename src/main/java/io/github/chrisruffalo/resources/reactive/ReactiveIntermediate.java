@@ -15,11 +15,18 @@ import javax.ws.rs.Path;
 @Path("/reactive/intermediate")
 public class ReactiveIntermediate implements ReactiveService {
 
+    /**
+     * Intermediate example, should work the same as the gateway
+     * but talk to the backend.
+     *
+     * @param buffer input
+     * @return the response from the next service
+     */
     @Override
-    public Uni<String> reactiveUpload(final Buffer inputStream) {
+    public Uni<String> reactiveUpload(final Buffer buffer) {
         HttpClient client = Vertx.vertx().createHttpClient();
         return client.request(HttpMethod.POST, "http://localhost:8080/backend/upload")
-                .onItem().transformToUni(httpClientRequest -> httpClientRequest.send(new io.vertx.mutiny.core.buffer.Buffer(inputStream)))
+                .onItem().transformToUni(httpClientRequest -> httpClientRequest.send(new io.vertx.mutiny.core.buffer.Buffer(buffer)))
                 .onItem().transformToUni(HttpClientResponse::body).onItem()
                 .transform(io.vertx.mutiny.core.buffer.Buffer::toString);
     }

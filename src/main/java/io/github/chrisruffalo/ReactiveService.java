@@ -16,6 +16,6 @@ public interface ReactiveService {
     @Path("/upload")
     @Consumes(MediaType.APPLICATION_XML)
     @Produces(MediaType.TEXT_PLAIN)
-    Uni<String> reactiveUpload(Buffer inputStream);
+    Uni<String> reactiveUpload(Buffer buffer);
 
 }
