@@ -14,8 +14,8 @@ import javax.inject.Inject;
 import javax.ws.rs.Path;
 
 @RequestScoped
-@Path("/request/gateway")
-public class RequestGateway implements RequestService {
+@Path("/request/intermediate")
+public class RequestIntermediate implements RequestService {
 
     @Inject
     Logger logger;
@@ -25,7 +25,7 @@ public class RequestGateway implements RequestService {
         logger.infof("got request");
         final io.vertx.mutiny.core.http.HttpServerRequest mutinyRequest = new io.vertx.mutiny.core.http.HttpServerRequest(request);
         final HttpClient client = Vertx.vertx().createHttpClient();
-        return client.request(HttpMethod.POST, 8080, "localhost", "/request/intermediate/upload")
+        return client.request(HttpMethod.POST, 8080, "localhost", "/backend/upload")
                 .onItem().transformToUni(httpClientRequest -> httpClientRequest.send(mutinyRequest))
                 .onItem().transformToUni(HttpClientResponse::body).onItem()
                 .transform(io.vertx.mutiny.core.buffer.Buffer::toString);

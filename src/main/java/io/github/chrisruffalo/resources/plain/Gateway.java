@@ -1,8 +1,8 @@
-package io.github.chrisruffalo.resources;
+package io.github.chrisruffalo.resources.plain;
 
 import io.github.chrisruffalo.Service;
+import io.github.chrisruffalo.resources.Common;
 import io.smallrye.common.annotation.Blocking;
-import io.smallrye.mutiny.Uni;
 import io.vertx.core.http.HttpServerRequest;
 import org.jboss.logging.Logger;
 
@@ -12,9 +12,9 @@ import javax.ws.rs.Path;
 import java.io.InputStream;
 
 @RequestScoped
-@Path("/intermediate")
+@Path("/gateway")
 @Blocking
-public class Intermediate extends Common implements Service {
+public class Gateway extends Common implements Service {
 
     @Inject
     Logger logger;
@@ -34,6 +34,6 @@ public class Intermediate extends Common implements Service {
 
     @Override
     protected String getClientPath() {
-        return "backend";
+        return "intermediate";
     }
 }
