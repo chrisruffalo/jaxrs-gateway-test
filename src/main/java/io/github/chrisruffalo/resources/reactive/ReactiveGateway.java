@@ -28,7 +28,7 @@ public class ReactiveGateway implements ReactiveService {
     Logger logger;
 
     /**
-     * No matter what I do here I seem to get a 415 "Unsupported Media Type" error
+     * This doesn't work. Probably something to do with the way the Multi works.
      *
      * @param inputStream input
      * @return the response from the next service

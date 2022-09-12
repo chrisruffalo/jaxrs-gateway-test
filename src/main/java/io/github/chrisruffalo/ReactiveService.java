@@ -16,7 +16,7 @@ public interface ReactiveService {
 
     @POST
     @Path("/upload")
-    @Consumes(MediaType.APPLICATION_OCTET_STREAM)
+    @Consumes(MediaType.APPLICATION_XML)
     @Produces(MediaType.TEXT_PLAIN)
     Uni<String> upload(InputStream inputStream);
 
