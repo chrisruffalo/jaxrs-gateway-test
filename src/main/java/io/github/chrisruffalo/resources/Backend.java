@@ -24,6 +24,7 @@ public class Backend implements Service {
     public String upload(InputStream file) {
         try {
             final Path temp = Files.createTempFile("test-upload-", ".tst");
+            logger.infof("created %s", temp);
             try(final OutputStream outputStream = Files.newOutputStream(temp)) {
                 long bytes = file.transferTo(outputStream);
                 logger.infof("transferred %d bytes to %s", bytes, temp);
