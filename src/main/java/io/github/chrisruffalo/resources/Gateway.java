@@ -28,7 +28,7 @@ public class Gateway extends Common implements Service {
 
     @Override
     public String upload(InputStream file) {
-        return this.sizeAwareForward(request, file);
+        return client().upload(file);
     }
 
     @Override
