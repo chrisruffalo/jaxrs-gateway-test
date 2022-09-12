@@ -1,6 +1,7 @@
 package io.github.chrisruffalo;
 
 import io.github.chrisruffalo.model.Upload;
+import io.smallrye.mutiny.Uni;
 import org.jboss.resteasy.reactive.MultipartForm;
 
 import javax.ws.rs.Consumes;
@@ -16,6 +17,6 @@ public interface MultipartService {
     @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces(MediaType.TEXT_PLAIN)
-    String upload(@MultipartForm Upload upload);
+    Uni<String> upload(@MultipartForm Upload upload);
 
 }

@@ -34,7 +34,7 @@ public class ReactiveGateway implements ReactiveService {
      * @return the response from the next service
      */
     @Override
-    public Uni<String> reactiveUpload(final InputStream inputStream) {
+    public Uni<String> upload(final InputStream inputStream) {
         final HttpClient client = Vertx.vertx().createHttpClient();
 
         // 99% certain this isn't right
